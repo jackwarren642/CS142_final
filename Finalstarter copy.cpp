@@ -193,151 +193,22 @@ void add_book(book library[]){
 }
 
 void borrow_book(book library[]){
-	string user_search;
-
-	cin.ignore(numeric_limits<streamsize>::max(), '\n'); //ensures computer allows input of book title
-
-	cout << "\nPlease enter the title of the book that you would like to borrow. (Case Sensitive!)" << endl;
-	getline (cin, user_search);
-
-	for (int count = 0; count < book_count; count++){
-
-		if (library[count].book_title == user_search){
-
-			if (library[count].availability == 1){
-				cout << "\nThis book is currently checked out or otherwise unavailable. Please try again later!\n" << endl;
-			}
-
-			else if(library[count].availability == 0){
-				cout << "\nThis book is currently available to be checked out!\n" << endl;
-			}
-
-			else{
-				cout << "\nThe input availability is invalid! Please contact library help desk.\n" << endl;
-			}
-		} 
-	}
-
+	
 	return;
 }
 
 void compare_books(book library[]){
 
-	int ISBN_search1 = 0, ISBN_search2 = 0;
-	int book_number1 = 0, book_number2 = 0;
-
-	cout << "\nPlease enter the ISBN number of the first book you would like to compare." << endl;
-	cin >> ISBN_search1;
-	book_number1 = find_book(library, ISBN_search1);
-
-	cout << "\nPlease enter the ISBN number to compare to " << library[book_number1].book_title << ":\n";
-	cin >> ISBN_search2;
-	book_number2 = find_book(library, ISBN_search2);
-	cout << "\n Comparison of " << library[book_number1].book_title << " and " << library[book_number2].book_title << "-\n";
-
-	cout << "\n" << library[book_number1].book_title << endl;
-	cout << library[book_number1].author_name << endl;
-	cout << library[book_number1].ISBN_no << endl;
-	cout << library[book_number1].availability << endl;
-	cout << library[book_number1].price << endl;
-	cout << "\n";
-
-	cout << library[book_number2].book_title << endl;
-	cout << library[book_number2].author_name << endl;
-	cout << library[book_number2].ISBN_no << endl;
-	cout << library[book_number2].availability << endl;
-	cout << library[book_number2].price << endl;
-	cout << "\n";
-
-	return;
 }
 
 void delete_book(book library[]){
 
-	int book_to_delete = 0;
-	int ISBN_search = 0;
-	char user_selection;
-
-	cout << "\nPlease enter the ISBN number of the book you'd like to delete." << endl;
-	cin >> ISBN_search;
-
-	if (find_book(library, ISBN_search) == 1000000){
-		cout << "There are no titles registered under this ISBN." << endl;
-	}
-
-	else{
-		cout << "\nWould you like to delete " << library[find_book(library, ISBN_search)].book_title << "? (Y/N)" << endl;
-		cin >> user_selection;
-
-		if (user_selection == 'Y' || user_selection == 'y'){
-			for (int count = find_book(library, ISBN_search); count < book_count; count++){
-				library[count] = library[count + 1];
-			}
-			book_count--;
-			show_books(library);
-		}
-		if (user_selection == 'N' || user_selection == 'n'){
-			cout << "\nDeletion canceled!" << endl;
-		}
-	} 
 
 	return;
 }
 
 void edit_book(book library[]){
-	int ISBN_search = 0;
-	char user_selection;
-	string new_title;
-	string new_author;
-	int new_ISBN = 0;
-	int new_availability = 0;
-	float new_price = 0.0;
-
-	cout << "\nPlease enter the ISBN number of the book you'd like to edit." << endl;
-	cin >> ISBN_search;
-
-	if (find_book(library, ISBN_search) == 1000000){
-		cout << "\nThere are no titles registered under this ISBN." << endl;
-	}
-
-	else{
-		int book_number = find_book(library, ISBN_search);
-
-		cout << "\nWould you like to edit " << library[book_number].book_title << "? (Y/N)" << endl;
-		cin >> user_selection;
-
-		if (user_selection == 'Y' || user_selection == 'y'){
-
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "\nPlease enter the new title." << endl;
-			getline(cin, new_title);
-			cout << "\nPlease enter the new author." << endl;
-			getline(cin, new_author);
-			cout << "\nPlease enter the new ISBN number." << endl;
-			cin >> new_ISBN;
-			cout << "\nPlease enter 0 if available and 1 if unavailable." << endl;
-			cin >> new_availability;
-			cout << "\nPlease enter the new price." << endl;
-			cin >> new_price;
-		
-		
-			library[book_number].book_title = new_title;
-			
-			library[book_number].author_name = new_author;
-			
-			library[book_number].ISBN_no = new_ISBN;
-		
-			library[book_number].availability = new_availability;
-			
-			library[book_number].price = new_price;
-			
-			show_books(library);
-		}
-
-		if (user_selection == 'N' || user_selection == 'n'){
-			cout << "\nEdit canceled!" << endl;
-		}
-	}
+	return;
 }
 
 int find_book(book library[], int ISBN_search){
